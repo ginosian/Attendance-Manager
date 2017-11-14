@@ -13,5 +13,6 @@ public class TimeOffReason extends AbstractDomain{
 
     private String title;
     private Boolean paid;
+    private Boolean disposedFromVacation;
 
 }

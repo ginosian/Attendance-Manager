@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
@@ -34,7 +35,7 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @PropertySource("classpath:security.properties")
-public class SecurityConfig {
+public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 
     @Value("${path_base_login}")
     String PATH_BASE_LOGIN;
@@ -101,9 +102,9 @@ public class SecurityConfig {
     @Bean
     public PersistentTokenBasedRememberMeServices getPersistentTokenBasedRememberMeServices() {
         PersistentTokenBasedRememberMeServices tokenBasedService = new PersistentTokenBasedRememberMeServices(
-                REMEMBER_ME, userDetailsService, persistentTokenRepository());
+                KEY_REMEMBER_ME, userDetailsService, persistentTokenRepository());
         tokenBasedService.setUseSecureCookie(true);
-        tokenBasedService.setCookieName(REMEMBER_ME);
+        tokenBasedService.setCookieName(KEY_REMEMBER_ME);
         tokenBasedService.setTokenLength(3);
         return tokenBasedService;
     }
