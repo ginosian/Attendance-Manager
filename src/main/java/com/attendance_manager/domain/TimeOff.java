@@ -10,7 +10,7 @@ public class TimeOff {
 
     private LocalDateTime start;
     private LocalDateTime end;
-    private TimeOffReason reason;
+    private TimeOffType reason;
     private User user;
     private String comment;
 

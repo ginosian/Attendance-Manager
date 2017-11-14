@@ -9,7 +9,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "time_off_reason")
-public class TimeOffReason extends AbstractDomain{
+public class TimeOffType extends AbstractDomain{
 
     private String title;
     private Boolean paid;
