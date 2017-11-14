@@ -2,6 +2,7 @@ package com.attendance_manager.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * @author Marta Ginosyan
@@ -9,10 +10,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "time_off_reason")
-public class TimeOffType extends AbstractDomain{
+public class TimeOffType extends AbstractDomain implements Serializable {
 
     private String title;
     private Boolean paid;
-    private Boolean disposedFromVacation;
+    private Boolean disposableFromVacation;
+    private Boolean isActive;
 
 }

@@ -1,9 +1,7 @@
-package com.attendance_manager.domain;
+package com.attendance_manager.domain.types;
 
 /**
  * @author Marta Ginosyan
- * Team: Lime
- * Project: greetz3-attendance_manager
  * Date: 11/14/17
  */
 public enum WorkingHoursScheme {

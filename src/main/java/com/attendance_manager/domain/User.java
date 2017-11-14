@@ -1,11 +1,13 @@
 package com.attendance_manager.domain;
 
+import com.attendance_manager.converter.LocalDateAttributeConverter;
 import com.attendance_manager.utils.StringUtils;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +52,15 @@ public class User extends AbstractDomain implements UserDetails {
 
     @Column(insertable = false, updatable = false)
     private String dtype;
+
+    @Convert(converter = LocalDateAttributeConverter.class)
+    @Column(name = "joining_date")
+    private LocalDate joiningDate;
+
+    @Convert(converter = LocalDateAttributeConverter.class)
+    @Column(name = "leaving_date")
+    private LocalDate leavingDate;
+
 
     @ManyToMany
     private List<Authority> grantedAuthorities;
@@ -186,6 +197,22 @@ public class User extends AbstractDomain implements UserDetails {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public LocalDate getJoiningDate() {
+        return joiningDate;
+    }
+
+    public void setJoiningDate(LocalDate joiningDate) {
+        this.joiningDate = joiningDate;
+    }
+
+    public LocalDate getLeavingDate() {
+        return leavingDate;
+    }
+
+    public void setLeavingDate(LocalDate leavingDate) {
+        this.leavingDate = leavingDate;
     }
 
     // endregion
