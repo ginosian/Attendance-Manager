@@ -2,10 +2,7 @@ package com.attendance_manager.domain;
 
 import com.attendance_manager.converter.LocalDateTimeAttributeConverter;
 
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -20,4 +17,41 @@ public class Attendance extends AbstractDomain implements Serializable {
     @Convert(converter = LocalDateTimeAttributeConverter.class)
     @Column(name = "out")
     private LocalDate out;
+
+    @OneToOne
+    private Employee employee;
+
+    public Attendance() {
+    }
+
+    public Attendance(String ssn, LocalDate in, LocalDate out, Employee employee) {
+        super(ssn);
+        this.in = in;
+        this.out = out;
+        this.employee = employee;
+    }
+
+    public LocalDate getIn() {
+        return in;
+    }
+
+    public void setIn(LocalDate in) {
+        this.in = in;
+    }
+
+    public LocalDate getOut() {
+        return out;
+    }
+
+    public void setOut(LocalDate out) {
+        this.out = out;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
 }

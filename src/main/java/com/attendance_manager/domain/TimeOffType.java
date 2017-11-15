@@ -1,5 +1,6 @@
 package com.attendance_manager.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -12,9 +13,46 @@ import java.io.Serializable;
 @Table(name = "time_off_reason")
 public class TimeOffType extends AbstractDomain implements Serializable {
 
+    @Column(name = "title")
     private String title;
-    private Boolean paid;
-    private Boolean disposableFromVacation;
-    private Boolean isActive;
 
+    @Column(name = "is_paid", columnDefinition = "BOOLEAN DEFAULT TRUE")
+    private Boolean isPaid;
+
+    @Column(name = "disposable_from_vacation", columnDefinition = "BOOLEAN DEFAULT TRUE")
+    private Boolean disposableFromVacation;
+
+    public TimeOffType() {
+    }
+
+    public TimeOffType(String ssn, String title, Boolean isPaid, Boolean disposableFromVacation) {
+        super(ssn);
+        this.title = title;
+        this.isPaid = isPaid;
+        this.disposableFromVacation = disposableFromVacation;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Boolean getPaid() {
+        return isPaid;
+    }
+
+    public void setPaid(Boolean paid) {
+        isPaid = paid;
+    }
+
+    public Boolean getDisposableFromVacation() {
+        return disposableFromVacation;
+    }
+
+    public void setDisposableFromVacation(Boolean disposableFromVacation) {
+        this.disposableFromVacation = disposableFromVacation;
+    }
 }

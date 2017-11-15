@@ -1,13 +1,12 @@
 package com.attendance_manager.domain;
 
+import com.attendance_manager.converter.LocalTimeAttributeConverter;
 import com.attendance_manager.domain.types.VacationDisposeType;
-import com.attendance_manager.domain.types.WorkingHoursScheme;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalTime;
+import java.util.List;
 
 /**
  * @author Marta Ginosyan
@@ -19,35 +18,50 @@ public class CompanyConfig extends AbstractDomain implements Serializable {
 
     @Column(name = "vacation_dispose_type_for_employee")
     private VacationDisposeType vacationDisposeTypeForEmployee;
+
     @Column(name = "vacation_dispose_type_for_hr")
     private VacationDisposeType vacationDisposeTypeForHR;
-    @Column(name = "working_hours_scheme")
-    private WorkingHoursScheme workingHoursScheme;
-    @Column(name = "lunch_start_time")
+
+    @Column(name = "default_working_hours_scheme")
+    private WorkingHoursScheme defaultWorkingHoursScheme;
+
+    @Convert(converter = LocalTimeAttributeConverter.class)
+    @Column(name = "lunch_start")
     private LocalTime lunchStartTime;
+
     @Column(name = "lunch_duration")
     private Short lunchDuration;
+
     @Column(name = "vacation_in_advance_allowed", columnDefinition = "BOOLEAN DEFAULT TRUE", nullable = false)
-    private Boolean vacationInAdvaceAllowed;
+    private Boolean vacationInAdvanceAllowed;
+
     @Column(name = "half_day_time_off_allowed", columnDefinition = "BOOLEAN DEFAULT FALSE", nullable = false)
     private Boolean halfDayTimeOffAllowed;
+
+    @OneToMany
+    private List<TimeOffType> allowedTimeOffTypes;
 
     public CompanyConfig() {
     }
 
-    public CompanyConfig(VacationDisposeType vacationDisposeTypeForEmployee,
+    public CompanyConfig(String ssn,
+            VacationDisposeType vacationDisposeTypeForEmployee,
             VacationDisposeType vacationDisposeTypeForHR,
-            WorkingHoursScheme workingHoursScheme,
+            WorkingHoursScheme defaultWorkingHoursScheme,
             LocalTime lunchStartTime,
             Short lunchDuration,
-            Boolean vacationInAdvaceAllowed, Boolean halfDayTimeOffAllowed) {
+            Boolean vacationInAdvanceAllowed,
+            Boolean halfDayTimeOffAllowed,
+            List<TimeOffType> allowedTimeOffTypes) {
+        super(ssn);
         this.vacationDisposeTypeForEmployee = vacationDisposeTypeForEmployee;
         this.vacationDisposeTypeForHR = vacationDisposeTypeForHR;
-        this.workingHoursScheme = workingHoursScheme;
+        this.defaultWorkingHoursScheme = defaultWorkingHoursScheme;
         this.lunchStartTime = lunchStartTime;
         this.lunchDuration = lunchDuration;
-        this.vacationInAdvaceAllowed = vacationInAdvaceAllowed;
+        this.vacationInAdvanceAllowed = vacationInAdvanceAllowed;
         this.halfDayTimeOffAllowed = halfDayTimeOffAllowed;
+        this.allowedTimeOffTypes = allowedTimeOffTypes;
     }
 
     public VacationDisposeType getVacationDisposeTypeForEmployee() {
@@ -66,12 +80,12 @@ public class CompanyConfig extends AbstractDomain implements Serializable {
         this.vacationDisposeTypeForHR = vacationDisposeTypeForHR;
     }
 
-    public WorkingHoursScheme getWorkingHoursScheme() {
-        return workingHoursScheme;
+    public WorkingHoursScheme getDefaultWorkingHoursScheme() {
+        return defaultWorkingHoursScheme;
     }
 
-    public void setWorkingHoursScheme(WorkingHoursScheme workingHoursScheme) {
-        this.workingHoursScheme = workingHoursScheme;
+    public void setDefaultWorkingHoursScheme(WorkingHoursScheme defaultWorkingHoursScheme) {
+        this.defaultWorkingHoursScheme = defaultWorkingHoursScheme;
     }
 
     public LocalTime getLunchStartTime() {
@@ -90,12 +104,12 @@ public class CompanyConfig extends AbstractDomain implements Serializable {
         this.lunchDuration = lunchDuration;
     }
 
-    public Boolean getVacationInAdvaceAllowed() {
-        return vacationInAdvaceAllowed;
+    public Boolean getVacationInAdvanceAllowed() {
+        return vacationInAdvanceAllowed;
     }
 
-    public void setVacationInAdvaceAllowed(Boolean vacationInAdvaceAllowed) {
-        this.vacationInAdvaceAllowed = vacationInAdvaceAllowed;
+    public void setVacationInAdvanceAllowed(Boolean vacationInAdvanceAllowed) {
+        this.vacationInAdvanceAllowed = vacationInAdvanceAllowed;
     }
 
     public Boolean getHalfDayTimeOffAllowed() {
@@ -104,5 +118,13 @@ public class CompanyConfig extends AbstractDomain implements Serializable {
 
     public void setHalfDayTimeOffAllowed(Boolean halfDayTimeOffAllowed) {
         this.halfDayTimeOffAllowed = halfDayTimeOffAllowed;
+    }
+
+    public List<TimeOffType> getAllowedTimeOffTypes() {
+        return allowedTimeOffTypes;
+    }
+
+    public void setAllowedTimeOffTypes(List<TimeOffType> allowedTimeOffTypes) {
+        this.allowedTimeOffTypes = allowedTimeOffTypes;
     }
 }
