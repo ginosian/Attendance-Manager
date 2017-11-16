@@ -35,4 +35,67 @@ public class IndividualTimeOff extends AbstractDomain implements Serializable {
     @Column(name = "disposed", columnDefinition = "BOOLEAN DEFAULT FALSE")
     private Boolean disposed;
 
+    public IndividualTimeOff() {
+    }
+
+    public IndividualTimeOff(String ssn,
+            LocalDateTime start,
+            LocalDateTime end,
+            TimeOffType reason, User user, String comment, Boolean disposed) {
+        super(ssn);
+        this.start = start;
+        this.end = end;
+        this.reason = reason;
+        this.user = user;
+        this.comment = comment;
+        this.disposed = disposed;
+    }
+
+    public LocalDateTime getStart() {
+        return start;
+    }
+
+    public void setStart(LocalDateTime start) {
+        this.start = start;
+    }
+
+    public LocalDateTime getEnd() {
+        return end;
+    }
+
+    public void setEnd(LocalDateTime end) {
+        this.end = end;
+    }
+
+    public TimeOffType getReason() {
+        return reason;
+    }
+
+    public void setReason(TimeOffType reason) {
+        this.reason = reason;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public Boolean getDisposed() {
+        return disposed;
+    }
+
+    public void setDisposed(Boolean disposed) {
+        this.disposed = disposed;
+    }
 }

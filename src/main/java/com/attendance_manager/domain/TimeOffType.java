@@ -22,14 +22,18 @@ public class TimeOffType extends AbstractDomain implements Serializable {
     @Column(name = "disposable_from_vacation", columnDefinition = "BOOLEAN DEFAULT TRUE")
     private Boolean disposableFromVacation;
 
+    @Column(name = "is_valid", columnDefinition = "BOOLEAN DEFAULT TRUE")
+    private Boolean isValid;
+
     public TimeOffType() {
     }
 
-    public TimeOffType(String ssn, String title, Boolean isPaid, Boolean disposableFromVacation) {
+    public TimeOffType(String ssn, String title, Boolean isPaid, Boolean disposableFromVacation, Boolean isValid) {
         super(ssn);
         this.title = title;
         this.isPaid = isPaid;
         this.disposableFromVacation = disposableFromVacation;
+        this.isValid = isValid;
     }
 
     public String getTitle() {
@@ -54,5 +58,13 @@ public class TimeOffType extends AbstractDomain implements Serializable {
 
     public void setDisposableFromVacation(Boolean disposableFromVacation) {
         this.disposableFromVacation = disposableFromVacation;
+    }
+
+    public Boolean getValid() {
+        return isValid;
+    }
+
+    public void setValid(Boolean valid) {
+        isValid = valid;
     }
 }

@@ -3,10 +3,12 @@ package com.attendance_manager.domain;
 import com.attendance_manager.converter.LocalTimeAttributeConverter;
 import com.attendance_manager.domain.types.VacationDisposeType;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalTime;
-import java.util.List;
 
 /**
  * @author Marta Ginosyan
@@ -25,6 +27,12 @@ public class CompanyConfig extends AbstractDomain implements Serializable {
     @Column(name = "default_working_hours_scheme")
     private WorkingHoursScheme defaultWorkingHoursScheme;
 
+    @Column(name = "vacation_per_month")
+    private Double vacationPerMonth;
+
+    @Column(name = "valid_vacation_period")
+    private Integer validVacationPeriod;
+
     @Convert(converter = LocalTimeAttributeConverter.class)
     @Column(name = "lunch_start")
     private LocalTime lunchStartTime;
@@ -38,9 +46,6 @@ public class CompanyConfig extends AbstractDomain implements Serializable {
     @Column(name = "half_day_time_off_allowed", columnDefinition = "BOOLEAN DEFAULT FALSE", nullable = false)
     private Boolean halfDayTimeOffAllowed;
 
-    @OneToMany
-    private List<TimeOffType> allowedTimeOffTypes;
-
     public CompanyConfig() {
     }
 
@@ -48,20 +53,22 @@ public class CompanyConfig extends AbstractDomain implements Serializable {
             VacationDisposeType vacationDisposeTypeForEmployee,
             VacationDisposeType vacationDisposeTypeForHR,
             WorkingHoursScheme defaultWorkingHoursScheme,
+            Double vacationPerMonth,
+            Integer validVacationPeriod,
             LocalTime lunchStartTime,
             Short lunchDuration,
             Boolean vacationInAdvanceAllowed,
-            Boolean halfDayTimeOffAllowed,
-            List<TimeOffType> allowedTimeOffTypes) {
+            Boolean halfDayTimeOffAllowed) {
         super(ssn);
         this.vacationDisposeTypeForEmployee = vacationDisposeTypeForEmployee;
         this.vacationDisposeTypeForHR = vacationDisposeTypeForHR;
         this.defaultWorkingHoursScheme = defaultWorkingHoursScheme;
+        this.vacationPerMonth = vacationPerMonth;
+        this.validVacationPeriod = validVacationPeriod;
         this.lunchStartTime = lunchStartTime;
         this.lunchDuration = lunchDuration;
         this.vacationInAdvanceAllowed = vacationInAdvanceAllowed;
         this.halfDayTimeOffAllowed = halfDayTimeOffAllowed;
-        this.allowedTimeOffTypes = allowedTimeOffTypes;
     }
 
     public VacationDisposeType getVacationDisposeTypeForEmployee() {
@@ -120,11 +127,19 @@ public class CompanyConfig extends AbstractDomain implements Serializable {
         this.halfDayTimeOffAllowed = halfDayTimeOffAllowed;
     }
 
-    public List<TimeOffType> getAllowedTimeOffTypes() {
-        return allowedTimeOffTypes;
+    public Double getVacationPerMonth() {
+        return vacationPerMonth;
     }
 
-    public void setAllowedTimeOffTypes(List<TimeOffType> allowedTimeOffTypes) {
-        this.allowedTimeOffTypes = allowedTimeOffTypes;
+    public void setVacationPerMonth(Double vacationPerMonth) {
+        this.vacationPerMonth = vacationPerMonth;
+    }
+
+    public Integer getValidVacationPeriod() {
+        return validVacationPeriod;
+    }
+
+    public void setValidVacationPeriod(Integer validVacationPeriod) {
+        this.validVacationPeriod = validVacationPeriod;
     }
 }
