@@ -5,6 +5,7 @@ import com.attendance_manager.converter.LocalDateTimeAttributeConverter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author Marta Ginosyan
@@ -35,20 +36,14 @@ public class IndividualTimeOff extends AbstractDomain implements Serializable {
     @Column(name = "disposed", columnDefinition = "BOOLEAN DEFAULT FALSE")
     private Boolean disposed;
 
-    public IndividualTimeOff() {
-    }
+    @Column(name = "disposed", columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private Boolean approved;
 
-    public IndividualTimeOff(String ssn,
-            LocalDateTime start,
-            LocalDateTime end,
-            TimeOffType reason, User user, String comment, Boolean disposed) {
-        super(ssn);
-        this.start = start;
-        this.end = end;
-        this.reason = reason;
-        this.user = user;
-        this.comment = comment;
-        this.disposed = disposed;
+    @OneToMany
+    @JoinColumn(name="user_id")
+    private List<User> approvers;
+
+    public IndividualTimeOff() {
     }
 
     public LocalDateTime getStart() {
@@ -97,5 +92,21 @@ public class IndividualTimeOff extends AbstractDomain implements Serializable {
 
     public void setDisposed(Boolean disposed) {
         this.disposed = disposed;
+    }
+
+    public Boolean getApproved() {
+        return approved;
+    }
+
+    public void setApproved(Boolean approved) {
+        this.approved = approved;
+    }
+
+    public List<User> getApprovers() {
+        return approvers;
+    }
+
+    public void setApprovers(List<User> approvers) {
+        this.approvers = approvers;
     }
 }

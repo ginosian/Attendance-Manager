@@ -14,12 +14,13 @@ public class EmployeeDetails implements Serializable {
     private LocalDate leaveDate;
     private Map<TimeOffType, Long> overallTimeOff;
     private Map<TimeOffType, Long> overallDisposedTimeOff;
-    private Long vacationLeftFromOutdated;
-    private Long vacationLeftFromIndate;
-    private Long overallVacationFromOutdated;
-    private Long overallVacationFromIndate;
-    private Long overallVacationGranted;
-    private Long overallDisposableVacationTaken;
+    private Double vacationLeftFromOutdated;
+    private Double vacationLeftFromIndate;
+    private Double overallVacationFromOutdated;
+    private Double overallVacationFromIndate;
+    private Double overallVacationGranted;
+    private Double overallDisposableVacationTaken;
+    private Double vacationInAdvance;
 
     public EmployeeDetails() {
     }
@@ -72,51 +73,59 @@ public class EmployeeDetails implements Serializable {
         this.overallDisposedTimeOff = overallDisposedTimeOff;
     }
 
-    public Long getVacationLeftFromOutdated() {
+    public Double getVacationLeftFromOutdated() {
         return vacationLeftFromOutdated;
     }
 
-    public void setVacationLeftFromOutdated(Long vacationLeftFromOutdated) {
+    public void setVacationLeftFromOutdated(Double vacationLeftFromOutdated) {
         this.vacationLeftFromOutdated = vacationLeftFromOutdated;
     }
 
-    public Long getVacationLeftFromIndate() {
+    public Double getVacationLeftFromIndate() {
         return vacationLeftFromIndate;
     }
 
-    public void setVacationLeftFromIndate(Long vacationLeftFromIndate) {
+    public void setVacationLeftFromIndate(Double vacationLeftFromIndate) {
         this.vacationLeftFromIndate = vacationLeftFromIndate;
     }
 
-    public Long getOverallVacationFromOutdated() {
+    public Double getOverallVacationFromOutdated() {
         return overallVacationFromOutdated;
     }
 
-    public void setOverallVacationFromOutdated(Long overallVacationFromOutdated) {
+    public void setOverallVacationFromOutdated(Double overallVacationFromOutdated) {
         this.overallVacationFromOutdated = overallVacationFromOutdated;
     }
 
-    public Long getOverallVacationFromIndate() {
+    public Double getOverallVacationFromIndate() {
         return overallVacationFromIndate;
     }
 
-    public void setOverallVacationFromIndate(Long overallVacationFromIndate) {
+    public void setOverallVacationFromIndate(Double overallVacationFromIndate) {
         this.overallVacationFromIndate = overallVacationFromIndate;
     }
 
-    public Long getOverallVacationGranted() {
+    public Double getOverallVacationGranted() {
         return overallVacationGranted;
     }
 
-    public void setOverallVacationGranted(Long overallVacationGranted) {
+    public void setOverallVacationGranted(Double overallVacationGranted) {
         this.overallVacationGranted = overallVacationGranted;
     }
 
-    public Long getOverallDisposableVacationTaken() {
+    public Double getOverallDisposableVacationTaken() {
         return overallDisposableVacationTaken;
     }
 
-    public void setOverallDisposableVacationTaken(Long overallDisposableVacationTaken) {
+    public void setOverallDisposableVacationTaken(Double overallDisposableVacationTaken) {
         this.overallDisposableVacationTaken = overallDisposableVacationTaken;
+    }
+
+    public Double getVacationInAdvance() {
+        return vacationInAdvance;
+    }
+
+    public void setVacationInAdvance(Double vacationInAdvance) {
+        this.vacationInAdvance = vacationInAdvance;
     }
 }

@@ -31,14 +31,14 @@ public class CompanyConfig extends AbstractDomain implements Serializable {
     private Double vacationPerMonth;
 
     @Column(name = "valid_vacation_period")
-    private Integer validVacationPeriod;
+    private Double validVacationPeriod;
 
     @Convert(converter = LocalTimeAttributeConverter.class)
     @Column(name = "lunch_start")
     private LocalTime lunchStartTime;
 
     @Column(name = "lunch_duration")
-    private Short lunchDuration;
+    private Double lunchDuration;
 
     @Column(name = "vacation_in_advance_allowed", columnDefinition = "BOOLEAN DEFAULT TRUE", nullable = false)
     private Boolean vacationInAdvanceAllowed;
@@ -47,28 +47,6 @@ public class CompanyConfig extends AbstractDomain implements Serializable {
     private Boolean halfDayTimeOffAllowed;
 
     public CompanyConfig() {
-    }
-
-    public CompanyConfig(String ssn,
-            VacationDisposeType vacationDisposeTypeForEmployee,
-            VacationDisposeType vacationDisposeTypeForHR,
-            WorkingHoursScheme defaultWorkingHoursScheme,
-            Double vacationPerMonth,
-            Integer validVacationPeriod,
-            LocalTime lunchStartTime,
-            Short lunchDuration,
-            Boolean vacationInAdvanceAllowed,
-            Boolean halfDayTimeOffAllowed) {
-        super(ssn);
-        this.vacationDisposeTypeForEmployee = vacationDisposeTypeForEmployee;
-        this.vacationDisposeTypeForHR = vacationDisposeTypeForHR;
-        this.defaultWorkingHoursScheme = defaultWorkingHoursScheme;
-        this.vacationPerMonth = vacationPerMonth;
-        this.validVacationPeriod = validVacationPeriod;
-        this.lunchStartTime = lunchStartTime;
-        this.lunchDuration = lunchDuration;
-        this.vacationInAdvanceAllowed = vacationInAdvanceAllowed;
-        this.halfDayTimeOffAllowed = halfDayTimeOffAllowed;
     }
 
     public VacationDisposeType getVacationDisposeTypeForEmployee() {
@@ -95,6 +73,22 @@ public class CompanyConfig extends AbstractDomain implements Serializable {
         this.defaultWorkingHoursScheme = defaultWorkingHoursScheme;
     }
 
+    public Double getVacationPerMonth() {
+        return vacationPerMonth;
+    }
+
+    public void setVacationPerMonth(Double vacationPerMonth) {
+        this.vacationPerMonth = vacationPerMonth;
+    }
+
+    public Double getValidVacationPeriod() {
+        return validVacationPeriod;
+    }
+
+    public void setValidVacationPeriod(Double validVacationPeriod) {
+        this.validVacationPeriod = validVacationPeriod;
+    }
+
     public LocalTime getLunchStartTime() {
         return lunchStartTime;
     }
@@ -103,11 +97,11 @@ public class CompanyConfig extends AbstractDomain implements Serializable {
         this.lunchStartTime = lunchStartTime;
     }
 
-    public Short getLunchDuration() {
+    public Double getLunchDuration() {
         return lunchDuration;
     }
 
-    public void setLunchDuration(Short lunchDuration) {
+    public void setLunchDuration(Double lunchDuration) {
         this.lunchDuration = lunchDuration;
     }
 
@@ -125,21 +119,5 @@ public class CompanyConfig extends AbstractDomain implements Serializable {
 
     public void setHalfDayTimeOffAllowed(Boolean halfDayTimeOffAllowed) {
         this.halfDayTimeOffAllowed = halfDayTimeOffAllowed;
-    }
-
-    public Double getVacationPerMonth() {
-        return vacationPerMonth;
-    }
-
-    public void setVacationPerMonth(Double vacationPerMonth) {
-        this.vacationPerMonth = vacationPerMonth;
-    }
-
-    public Integer getValidVacationPeriod() {
-        return validVacationPeriod;
-    }
-
-    public void setValidVacationPeriod(Integer validVacationPeriod) {
-        this.validVacationPeriod = validVacationPeriod;
     }
 }

@@ -8,30 +8,30 @@ import java.util.List;
 
 public interface EmployeeDetailService {
 
-    EmployeeDetails calculateDetailsTimeOffsDisposedFromOutdatedVacation(
+    EmployeeDetails calculateWhenTimeOffsDisposedFromOutdatedVacation(
             Long employeeId,
             String employeeName,
             LocalDate joined,
             LocalDate leaved,
             List<IndividualTimeOff> timeOffs,
             Double vacationPerMonth,
-            Integer validVacationPeriod);
+            Double validVacationPeriod);
 
-    EmployeeDetails calculateDetailsTimeOffsDisposedFromIndateVacation(
+    EmployeeDetails calculateWhenTimeOffsDisposedFromIndateVacation(
             Long employeeId,
             String employeeName,
             LocalDate joined,
             LocalDate leaved,
             List<IndividualTimeOff> timeOffs,
             Double vacationPerMonth,
-            Integer validVacationPeriod);
+            Double validVacationPeriod);
 
-    EmployeeDetails calculateDetailsTimeOffsDisposedBalanced(
+    EmployeeDetails calculateWhenTimeOffsDisposedBalanced(
             Long employeeId,
             String employeeName,
             LocalDate joined,
             LocalDate leaved,
             List<IndividualTimeOff> timeOffs,
             Double vacationPerMonth,
-            Integer validVacationPeriod);
+            Double validVacationPeriod);
 }
